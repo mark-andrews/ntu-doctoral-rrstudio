@@ -1,0 +1,2 @@
+* ERA_DATA_ALL.xlsx is from "Neurological Evidence for the Multisensorial Semantics of Ideophones in Pastaza Kichwa: A Functional Near Infrared Spectroscopy (fNIRS) Study in Amazonian Ecuador" available at https://osf.io/f7rjq 
+* glm_data-korean.csv is from "Is the effect of vocabulary size on lexical encoding modulated by L1-L2 similarity?" available at https://osf.io/5sxuf  
