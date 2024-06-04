@@ -136,3 +136,71 @@ select(blp_df, where(is.character))
 
 mutate(blp_df, across(where(is.character), as.factor))
 
+mutate(blp_df, rt_speed = if_else(rt < 500, 'fast', 'slow'))
+
+mutate(blp_df,
+       rt_speed = case_when(
+         rt < 500 ~ 'fast',
+         rt > 900 ~ 'slow',
+         rt >= 500 & rt <= 900 ~ 'medium'
+       )
+)
+
+mutate(blp_df,
+       rt_speed = case_when(
+         rt < 500 ~ 'fast',
+         rt > 900 ~ 'slow',
+         TRUE ~ 'medium'
+       )
+)
+
+# sorting with arrange ----------------------------------------------------
+
+arrange(blp_df, rt)
+arrange(blp_df, desc(rt))
+arrange(blp_df, spell)
+arrange(blp_df, desc(spell))
+arrange(blp_df, lex, rt)
+arrange(blp_df, -lex)
+
+# summarizing with summarize/summarise ------------------------------------
+
+summarize(blp_df, 
+          mean_rt = mean(rt, na.rm= T),
+          median_rt = median(rt, na.rm = T),
+          sd_rt = sd(rt, na.rm = T))
+
+
+# Piping with pipes: %>% --------------------------------------------------
+
+primes <- c(2, 3, 5, 7, 11, 13, 17)
+log(primes)
+primes_log <- log(primes)
+sqrt(primes_log)
+primes_log_sqrt <- sqrt(primes_log)
+sqrt(log(primes))
+sum(sqrt(log(primes)))
+log(sum(sqrt(log(primes))))
+
+log(primes)
+primes %>% log()
+primes %>% log() %>% sqrt() %>% sum() %>% log()
+primes |> log() |> sqrt() |> sum() |> log()
+
+
+# Wrangling pipe example --------------------------------------------------
+
+read_csv("https://raw.githubusercontent.com/mark-andrews/ntu-doctoral-rrstudio/main/data/blp-trials-short.txt") %>% 
+  mutate(accuracy = lex == resp) %>% 
+  rename(subject = participant, stimulus = spell, reaction_time = rt) %>% 
+  select(subject, stimulus, lex, accuracy, reaction_time) %>% 
+  filter(lex == 'W', accuracy, reaction_time > 500 & reaction_time < 900) %>% 
+  drop_na()
+
+read_csv("https://raw.githubusercontent.com/mark-andrews/ntu-doctoral-rrstudio/main/data/blp-trials-short.txt") %>% 
+  mutate(accuracy = lex == resp) %>% 
+  rename(subject = participant, stimulus = spell, reaction_time = rt) %>% 
+  select(subject, stimulus, lex, accuracy, reaction_time) %>% 
+  drop_na() %>% 
+  group_by(lex, accuracy) %>% 
+  summarise(mean_rt = mean(reaction_time), sd_rt = sd(reaction_time))

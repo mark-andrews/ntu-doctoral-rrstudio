@@ -9,7 +9,7 @@
 
 ## Day 2
 
-* Session 1
-* Session 2
+* [Session 1](https://vimeo.com/953559587?share=copy)
+* [Session 2](https://vimeo.com/953576887?share=copy)
 * Session 3
 
