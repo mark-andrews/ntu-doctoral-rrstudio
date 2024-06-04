@@ -48,7 +48,14 @@ library(lme4)
 ggplot(sleepstudy, 
        aes(x = Days, y = Reaction, colour = Subject)) + 
   geom_point() +
+  stat_smooth(method = 'lm', se = F) +
   facet_wrap(~Subject)
   
   
+result_8 <- lmer(Reaction ~ Days + (Days|Subject), data = sleepstudy)
+
+summary(result_8)
+library(lmerTest)
+
+logLik(result_8)
 

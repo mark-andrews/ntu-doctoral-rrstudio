@@ -11,5 +11,5 @@
 
 * [Session 1](https://vimeo.com/953559587?share=copy)
 * [Session 2](https://vimeo.com/953576887?share=copy)
-* Session 3
+* [Session 3](https://vimeo.com/953661971?share=copy)
 
