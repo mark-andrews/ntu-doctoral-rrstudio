@@ -21,9 +21,4 @@ On each day, the course will take 5hr + 30 mins contact hours with two 2-hour br
 
 ## Software
 
-In addition to RStudio, we will use the following R packages:
-
-* `tidyverse`
-* `MASS`
-* `pscl`
-* `lme4`
+Instructions on how to install R and RStudio and necessary R packages can be found [here](software.md).
