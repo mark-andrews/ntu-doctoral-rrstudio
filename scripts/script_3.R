@@ -1,6 +1,7 @@
 library(tidyverse)
 library(skimr)
 library(emmeans)
+library(lmerTest) # loads lme4 too
 
 weight_df <- read_csv("data/weight.csv") # note: it is read_csv not read.csv
 
@@ -103,3 +104,14 @@ skim(smoking_df)
 result_6 <- glm(smoker ~ educ + age + lincome, data = smoking_df,
                 family = binomial())
 summary(result_6)
+
+drop1(result_6, scope = ~ lincome, test = 'Chisq')
+
+emmeans(result_6, specs = ~ age)
+
+# Mixed effects regression ------------------------------------------------
+
+ggplot(sleepstudy, aes(x = Days, y = Reaction)) + 
+  geom_point() +
+  geom_smooth(method = 'lm', se = FALSE) +
+  facet_wrap(~Subject)
