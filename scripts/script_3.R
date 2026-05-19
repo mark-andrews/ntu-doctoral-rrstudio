@@ -1,5 +1,6 @@
 library(tidyverse)
 library(skimr)
+library(emmeans)
 
 weight_df <- read_csv("data/weight.csv") # note: it is read_csv not read.csv
 
@@ -83,5 +84,21 @@ result_4 <- lm(weight ~ height + gender + age + race, data = weight_df)
 
 summary(result_4)
 
+emmeans(result_4, specs = ~ race)
+emmeans(result_4, specs = pairwise ~ race)
 
+result_5 <- lm(weight ~ height + gender + age, data = weight_df)
 
+anova(result_5, result_4)
+
+drop1(result_4, scope = ~ race, test = 'F')
+
+# Generalized linear models -----------------------------------------------
+
+smoking_df <- read_csv("data/smoking.csv") |> mutate(smoker = cigs > 0)
+# alternatively use this:
+# smoking_df <- read_csv("https://raw.githubusercontent.com/mark-andrews/ntu-doctoral-rrstudio/refs/heads/main/data/smoking.csv") |> mutate(smoker = cigs > 0)
+skim(smoking_df)
+
+result_6 <- glm(smoker ~ educ + age + lincome, data = smoking_df,
+                family = binomial())
