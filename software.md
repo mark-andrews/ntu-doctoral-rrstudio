@@ -63,10 +63,14 @@ In addition to RStudio, we will use the following R packages:
 * `MASS`
 * `pscl`
 * `lme4`
+* `lmerTest`
+* `emmeans`
+* `skimr`
+* `car`
 
 You can install them as follows:
 ```r
-install.packages(c("MASS", "pscl", "lme4"))
+install.packages(c("MASS", "pscl", "lme4", "lmerTest", "emmeans", "skimr", "car"))
 ```
 
 
