@@ -102,3 +102,4 @@ skim(smoking_df)
 
 result_6 <- glm(smoker ~ educ + age + lincome, data = smoking_df,
                 family = binomial())
+summary(result_6)
